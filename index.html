@@ -3,15 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tegami: Tell Me Your Story</title>
-<meta name="description" content="A bilingual oral history archive preserving the voices of the pre-Facebook generation. Wisdom shares, life stories, and a permanent digital archive.">
+<title>Tegami: Tell Me Your Story — Bilingual Oral History Archive</title>
+<meta name="description" content="Tegami preserves the voices of the pre-Facebook generation through bilingual oral history interviews. Wisdom shares, life stories, and a permanent digital archive for 2.5 billion people.">
+<link rel="canonical" href="https://tegami-oral-history.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tegami Oral History Project">
 <meta property="og:title" content="Tegami: Tell Me Your Story">
-<meta property="og:description" content="A bilingual oral history archive for the pre-Facebook generation.">
+<meta property="og:description" content="A bilingual oral history archive preserving the voices of the pre-Facebook generation. Wisdom shares, life stories, and a permanent digital archive.">
 <meta property="og:image" content="https://i.imgur.com/i9hVRuW.png">
+<meta property="og:url" content="https://tegami-oral-history.vercel.app/">
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tegami: Tell Me Your Story">
+<meta name="twitter:description" content="A bilingual oral history archive for the pre-Facebook generation.">
+<meta name="twitter:image" content="https://i.imgur.com/i9hVRuW.png">
+
 <meta name="theme-color" content="#A05A3A">
 <link rel="icon" type="image/png" href="https://i.imgur.com/i9hVRuW.png">
 <link rel="apple-touch-icon" href="https://i.imgur.com/vx7Apkh.png">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Tegami Oral History Project",
+  "alternateName": "Tegami",
+  "url": "https://tegami-oral-history.vercel.app",
+  "logo": "https://i.imgur.com/i9hVRuW.png",
+  "description": "A bilingual oral history archive preserving the voices of the pre-Facebook generation.",
+  "email": "hello@mytegami.win",
+  "sameAs": ["https://linkedin.com/company/mytegami"],
+  "foundingOrganization": {
+    "@type": "Organization",
+    "name": "MyTegami",
+    "url": "https://mytegami.win"
+  },
+  "member": {
+    "@type": "Person",
+    "name": "M.G. Sheftall",
+    "jobTitle": "Oral Historian",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Shizuoka University"
+    }
+  }
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +111,12 @@
   --swoosh-3: oklch(0.78 0.09 75 / 0.12);
   --noise-blend: multiply;
   --brand-teal: oklch(0.35 0.045 190);
-  --theme-transition: color-scheme 0.3s ease;
+  --hamburger-bg: oklch(0.13 0.006 40 / 0.97);
+  --hamburger-link: oklch(0.9 0.008 70);
+  --hamburger-link-faded: oklch(0.6 0.006 70);
+  --divider: oklch(0.88 0.01 65);
+  --stat-border: oklch(0.88 0.01 65 / 0.5);
+  --focus-ring: oklch(0.55 0.14 30 / 0.4);
 }
 
 html.dark {
@@ -115,6 +161,12 @@ html.dark {
   --swoosh-3: oklch(0.68 0.08 75 / 0.15);
   --noise-blend: screen;
   --brand-teal: oklch(0.55 0.045 190);
+  --hamburger-bg: oklch(0.08 0.004 40 / 0.97);
+  --hamburger-link: oklch(0.86 0.008 70);
+  --hamburger-link-faded: oklch(0.55 0.006 70);
+  --divider: oklch(0.25 0.008 40);
+  --stat-border: oklch(0.3 0.01 40 / 0.5);
+  --focus-ring: oklch(0.6 0.14 28 / 0.5);
   color-scheme: dark;
 }
 
@@ -130,6 +182,33 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip to content */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 200;
+  background: var(--terracotta);
+  color: var(--paper);
+  padding: 12px 24px;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 ::selection {
@@ -182,6 +261,7 @@ nav {
 nav.scrolled {
   background: var(--nav-scrolled-bg);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   box-shadow: var(--shadow-sm);
 }
 
@@ -194,16 +274,6 @@ nav .container {
   justify-content: space-between;
   align-items: center;
   height: 72px;
-}
-
-.logo {
-  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
-  font-size: 1.25rem;
-  color: var(--espresso);
-  text-decoration: none;
-  letter-spacing: -0.01em;
-  position: relative;
-  z-index: 2;
 }
 
 .logo {
@@ -227,13 +297,6 @@ nav .container {
   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
   font-size: 1.25rem;
   letter-spacing: -0.01em;
-}
-
-.logo-img {
-  height: 56px;
-  width: auto;
-  display: block;
-  border-radius: 6px;
 }
 
 .nav-links {
@@ -349,6 +412,117 @@ html.dark .theme-toggle .moon-icon {
   transform: rotate(90deg);
 }
 
+/* Hamburger button */
+.hamburger {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  position: relative;
+  z-index: 110;
+  color: var(--espresso);
+}
+
+.hamburger svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.hamburger .line-1,
+.hamburger .line-2,
+.hamburger .line-3 {
+  transition: transform var(--dur-base) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+  transform-origin: center;
+}
+
+.hamburger[aria-expanded="true"] .line-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger[aria-expanded="true"] .line-2 {
+  opacity: 0;
+}
+
+.hamburger[aria-expanded="true"] .line-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: var(--hamburger-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-base) var(--ease-out), visibility var(--dur-base) var(--ease-out);
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 8px;
+}
+
+.mobile-menu a {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: var(--hamburger-link);
+  text-decoration: none;
+  padding: 12px 24px;
+  transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.mobile-menu.open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.open a:nth-child(1) { transition-delay: 100ms; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 160ms; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 220ms; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 280ms; }
+
+.mobile-menu a:hover {
+  color: var(--terracotta);
+  transform: translateX(4px);
+}
+
+.mobile-menu-controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.mobile-menu.open .mobile-menu-controls {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 340ms;
+}
+
 /* Hero */
 .hero {
   min-height: 100vh;
@@ -371,7 +545,6 @@ html.dark .theme-toggle .moon-icon {
   pointer-events: none;
 }
 
-/* Decorative background letter "T" watermark */
 .hero-letter {
   position: absolute;
   top: 50%;
@@ -391,7 +564,6 @@ html.dark .theme-toggle .moon-icon {
   font-family: 'Zen Old Mincho', serif;
 }
 
-/* Swoosh lines - more dramatic */
 .hero-swoosh {
   position: absolute;
   right: -2%;
@@ -433,7 +605,6 @@ html.dark .theme-toggle .moon-icon {
   to { stroke-dashoffset: 0; }
 }
 
-/* Subtle audio waveform decoration */
 .hero-waveform {
   position: absolute;
   left: 5%;
@@ -551,12 +722,27 @@ html.dark .theme-toggle .moon-icon {
   cursor: pointer;
   font-family: 'Figtree', 'Noto Sans JP', sans-serif;
   box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, oklch(1 0 0 / 0.1) 0%, oklch(1 0 0 / 0) 50%);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
 
 .btn-primary:hover {
   background: var(--terracotta-light);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover::after {
+  opacity: 1;
 }
 
 .btn-primary:active {
@@ -619,7 +805,16 @@ section {
   line-height: 1.7;
 }
 
-/* === INVITATION: two-column layout === */
+/* Divider between sections */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--divider) 20%, var(--divider) 80%, transparent 100%);
+  border: none;
+  margin: 0;
+}
+
+/* === INVITATION === */
 .invitation {
   background: var(--warm-surface);
   padding: 140px 0 180px;
@@ -665,6 +860,8 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--stat-border);
 }
 
 .invitation-right {
@@ -676,30 +873,32 @@ section {
   background: var(--paper);
   border-radius: var(--radius-md);
   position: relative;
+  border: 1px solid var(--stat-border);
 }
 
 .invitation-quote::before {
-   content: '\201C';
-   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
-   font-size: 5rem;
-   line-height: 1;
-   color: var(--terracotta-faded);
-   position: absolute;
-   top: 12px;
-   left: 20px;
-   pointer-events: none;
- }
+  content: '\201C';
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--terracotta-faded);
+  position: absolute;
+  top: 12px;
+  left: 20px;
+  pointer-events: none;
+}
+
 .invitation-quote::after {
-   content: '\201D';
-   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
-   font-size: 5rem;
-   line-height: 1;
-   color: var(--terracotta-faded);
-   position: absolute;
-   bottom: 12px;
-   right: 20px;
-   pointer-events: none;
- }
+  content: '\201D';
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--terracotta-faded);
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+  pointer-events: none;
+}
 
 .invitation-quote p {
   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
@@ -721,7 +920,7 @@ section {
   z-index: 1;
 }
 
-/* === TRACKS: asymmetric, overlapping === */
+/* === TRACKS === */
 .tracks {
   background: var(--terracotta-bg);
   padding: 160px 0;
@@ -784,12 +983,14 @@ section {
 .track-card.wisdom {
   background: var(--card-wisdom-bg);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid var(--card-wisdom-border);
 }
 
 .track-card.stories {
   background: var(--card-stories-bg);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid var(--card-stories-border);
   margin-top: 60px;
 }
@@ -943,7 +1144,7 @@ section {
   line-height: 1.7;
 }
 
-/* === About === */
+/* === About / Voices === */
 .voices {
   background: var(--warm-surface);
   padding: 140px 0;
@@ -985,24 +1186,25 @@ section {
 }
 
 .voices-endorsement .quote-mark {
-   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
-   font-size: 4rem;
-   line-height: 0.8;
-   color: var(--terracotta-faded);
-   margin-bottom: 12px;
-   position: relative;
- }
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 4rem;
+  line-height: 0.8;
+  color: var(--terracotta-faded);
+  margin-bottom: 12px;
+  position: relative;
+}
+
 .voices-endorsement .quote-mark::after {
-   content: '\201D';
-   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
-   font-size: 4rem;
-   line-height: 0.8;
-   color: var(--terracotta-faded);
-   position: absolute;
-   bottom: 0;
-   right: -0.5em;
-   pointer-events: none;
- }
+  content: '\201D';
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 4rem;
+  line-height: 0.8;
+  color: var(--terracotta-faded);
+  position: absolute;
+  bottom: 0;
+  right: -0.5em;
+  pointer-events: none;
+}
 
 .voices-endorsement .quote-text {
   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
@@ -1030,7 +1232,7 @@ section {
   margin-top: 4px;
 }
 
-/* === CTA with envelope motif === */
+/* === CTA === */
 .cta-section {
   background: var(--paper);
   text-align: center;
@@ -1045,6 +1247,7 @@ section {
   padding: 64px 48px;
   background: var(--warm-surface);
   border-radius: var(--radius-md);
+  border: 1px solid var(--stat-border);
 }
 
 .cta-envelope::before {
@@ -1088,7 +1291,6 @@ section {
   padding: 16px 40px;
 }
 
-/* Decorative envelope flap corners */
 .cta-flap-corner {
   position: absolute;
   width: 24px;
@@ -1145,6 +1347,13 @@ footer .logo {
   font-size: 1.1rem;
 }
 
+.logo-img {
+  height: 56px;
+  width: auto;
+  display: block;
+  border-radius: 6px;
+}
+
 footer .links {
   display: flex;
   gap: 24px;
@@ -1159,6 +1368,8 @@ footer .links a {
 }
 
 footer .links a:hover {
+  color: var(--terracotta);
+}
 
 .footer-brand {
   font-size: 0.8rem;
@@ -1171,8 +1382,6 @@ footer .links a:hover {
 
 .footer-brand:hover {
   opacity: 1;
-}
-  color: var(--terracotta);
 }
 
 footer .copyright {
@@ -1197,7 +1406,7 @@ footer .copyright {
 .reveal-delay-3 { transition-delay: 300ms; }
 .reveal-delay-4 { transition-delay: 400ms; }
 
-/* Japanese language support */
+/* Language toggle */
 .ja { display: none; }
 body.lang-ja .en { display: none; }
 body.lang-ja .ja { display: inline; }
@@ -1209,6 +1418,11 @@ body.lang-ja {
 
 body.lang-ja .hero-letter {
   font-family: 'Zen Old Mincho', serif;
+}
+
+/* Body lock when mobile menu open */
+body.menu-open {
+  overflow: hidden;
 }
 
 /* Responsive */
@@ -1286,16 +1500,23 @@ body.lang-ja .hero-letter {
     font-size: clamp(14rem, 30vw, 20rem);
   }
 
-  .nav-links a {
+  /* Hide desktop nav links, show hamburger */
+  .nav-links .nav-link {
     display: none;
   }
 
-  .nav-links .lang-toggle {
-    display: block;
+  .nav-links {
+    gap: 12px;
   }
 
-  .nav-links .theme-toggle {
+  .hamburger {
     display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu {
+    display: block;
   }
 
   .track-card {
@@ -1319,6 +1540,16 @@ body.lang-ja .hero-letter {
   .tracks {
     padding: 120px 0;
   }
+
+  footer .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  footer .links {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1341,25 +1572,42 @@ body.lang-ja .hero-letter {
   .cta-envelope {
     padding: 40px 24px;
   }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary, .btn-secondary {
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
   .hero-swoosh path { animation: none; stroke-dashoffset: 0; }
   .hero-waveform span { animation: none; }
   .hero-scroll { animation: none; }
+  .mobile-menu a { opacity: 1; transform: none; transition: none; }
+  .mobile-menu-controls { opacity: 1; transform: none; transition: none; }
 }
 
 /* Print */
 @media print {
-  .noise-overlay { display: none; }
+  .noise-overlay, .hamburger, .mobile-menu, .skip-link { display: none; }
   .hero { min-height: auto; }
+  nav { position: static; background: none; }
 }
 </style>
 </head>
 <body>
+
+<a href="#main" class="skip-link">
+  <span class="en">Skip to content</span>
+  <span class="ja">コンテンツへスキップ</span>
+</a>
 
 <div class="noise-overlay" aria-hidden="true">
   <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
@@ -1371,25 +1619,25 @@ body.lang-ja .hero-letter {
   </svg>
 </div>
 
-<nav id="nav">
+<nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="container">
-    <a href="#" class="logo">
-      <img src="https://i.imgur.com/i9hVRuW.png" alt="" class="logo-mark">
+    <a href="#" class="logo" aria-label="Tegami home">
+      <img src="https://i.imgur.com/i9hVRuW.png" alt="" class="logo-mark" width="32" height="32">
       <span class="logo-text">
         <span class="en">Tegami</span>
         <span class="ja">手紙</span>
       </span>
     </a>
     <div class="nav-links">
-      <a href="#invitation">
+      <a href="#invitation" class="nav-link">
         <span class="en">Stories</span>
         <span class="ja">物語</span>
       </a>
-      <a href="#about">
+      <a href="#about" class="nav-link">
         <span class="en">About</span>
         <span class="ja">この活動</span>
       </a>
-      <a href="#contact">
+      <a href="#contact" class="nav-link">
         <span class="en">Contact</span>
         <span class="ja">お問い合わせ</span>
       </a>
@@ -1397,12 +1645,56 @@ body.lang-ja .hero-letter {
         <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
-      <button class="lang-toggle" onclick="toggleLang()">JP</button>
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language">
+        <span class="en">JP</span>
+        <span class="ja">EN</span>
+      </button>
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" onclick="toggleMobileMenu()">
+        <svg viewBox="0 0 24 24">
+          <line class="line-1" x1="3" y1="6" x2="21" y2="6"/>
+          <line class="line-2" x1="3" y1="12" x2="21" y2="12"/>
+          <line class="line-3" x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
     </div>
   </div>
 </nav>
 
-<section class="hero">
+<!-- Mobile menu overlay -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
+  <div class="mobile-menu-inner">
+    <a href="#invitation" onclick="closeMobileMenu()">
+      <span class="en">Stories</span>
+      <span class="ja">物語</span>
+    </a>
+    <a href="#about" onclick="closeMobileMenu()">
+      <span class="en">About</span>
+      <span class="ja">この活動</span>
+    </a>
+    <a href="#contact" onclick="closeMobileMenu()">
+      <span class="en">Contact</span>
+      <span class="ja">お問い合わせ</span>
+    </a>
+    <a href="mailto:hello@mytegami.win" onclick="closeMobileMenu()">
+      <span class="en">Get in Touch</span>
+      <span class="ja">お問い合わせ</span>
+    </a>
+    <div class="mobile-menu-controls">
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch language">
+        <span class="en">JP</span>
+        <span class="ja">EN</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-heading">
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-letter" aria-hidden="true">
     <span class="en">T</span>
@@ -1420,7 +1712,7 @@ body.lang-ja .hero-letter {
     <span></span><span></span><span></span><span></span><span></span><span></span>
   </div>
   <div class="container-narrow">
-    <h1 class="hero-headline reveal visible">
+    <h1 class="hero-headline reveal visible" id="hero-heading">
       <span class="en">Every story<br>deserves to <em>live</em>.</span>
       <span class="ja">すべての物語は<br><em>生きつづける</em>。</span>
     </h1>
@@ -1446,21 +1738,23 @@ body.lang-ja .hero-letter {
   </div>
 </section>
 
-<section class="invitation" id="invitation">
+<hr class="section-divider" aria-hidden="true">
+
+<section class="invitation" id="invitation" aria-labelledby="invitation-heading">
   <div class="container-wide">
     <div class="invitation-grid">
       <div class="invitation-left">
         <div class="section-head reveal">
           <div class="section-head-border"></div>
-          <h2>
+          <h2 id="invitation-heading">
             <span class="en">The stories we haven't asked for</span>
             <span class="ja">まだ聞かれていない物語</span>
           </h2>
         </div>
         <div class="invitation-text reveal reveal-delay-1">
           <p>
-<span class="en">Tegami pairs trained interviewers with elders from the pre-Facebook generation. Over tea, at a kitchen table, in whatever space feels safe. We listen. We record. We preserve.</span>
-          <span class="ja">Tegamiは、訓練を受けたインタビュアーと、プレ・フェイスブック世代の高齢者をペアリングします。お茶を飲みながら、キッチンテーブルで、安心できる場所ならどこでも。耳を傾け、記録し、保存します。</span>
+            <span class="en">Tegami pairs trained interviewers with elders from the pre-Facebook generation. Over tea, at a kitchen table, in whatever space feels safe. We listen. We record. We preserve.</span>
+            <span class="ja">Tegamiは、訓練を受けたインタビュアーと、プレ・フェイスブック世代の高齢者をペアリングします。お茶を飲みながら、キッチンテーブルで、安心できる場所ならどこでも。耳を傾け、記録し、保存します。</span>
           </p>
           <p>
             <span class="en">Every day, 10,000 people turn 80. Two decades is all we have to capture a generation's worth of lived experience. This is not a project with unlimited time.</span>
@@ -1479,8 +1773,8 @@ body.lang-ja .hero-letter {
         </div>
         <div class="invitation-quote reveal reveal-delay-2">
           <p>
-<span class="en">"I asked my grandmother to tell me her story. She didn't know where to start. Not because she had forgotten, but because no one had ever asked."</span>
-          <span class="ja">「祖母に人生の話を聞かせてと頼んだ時、彼女はどこから始めればいいのかわかりませんでした。忘れたからではなく、誰も尋ねたことがなかったからです。」</span>
+            <span class="en">"I asked my grandmother to tell me her story. She didn't know where to start. Not because she had forgotten, but because no one had ever asked."</span>
+            <span class="ja">「祖母に人生の話を聞かせてと頼んだ時、彼女はどこから始めればいいのかわかりませんでした。忘れたからではなく、誰も尋ねたことがなかったからです。」</span>
           </p>
           <div class="attribution">
             <span class="en">Founder, Tegami Oral History Project</span>
@@ -1492,11 +1786,11 @@ body.lang-ja .hero-letter {
   </div>
 </section>
 
-<section class="tracks">
+<section class="tracks" id="tracks" aria-labelledby="tracks-heading">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-head-border"></div>
-      <h2>
+      <h2 id="tracks-heading">
         <span class="en">Two kinds of stories</span>
         <span class="ja">二つの種類の物語</span>
       </h2>
@@ -1574,11 +1868,11 @@ body.lang-ja .hero-letter {
   </div>
 </section>
 
-<section class="session-narrative">
+<section class="session-narrative" aria-labelledby="session-heading">
   <div class="container-narrow">
     <div class="section-head reveal">
       <div class="section-head-border"></div>
-      <h2>
+      <h2 id="session-heading">
         <span class="en">What a session looks like</span>
         <span class="ja">セッションの流れ</span>
       </h2>
@@ -1587,8 +1881,8 @@ body.lang-ja .hero-letter {
         <span class="ja">シンプルに、温かく、すべては語り手のペースで。</span>
       </p>
     </div>
-    <div class="session-flow">
-      <div class="session-step step-done reveal reveal-delay-1">
+    <div class="session-flow" role="list">
+      <div class="session-step step-done reveal reveal-delay-1" role="listitem">
         <div class="session-step-number">
           <span class="en">Step 01</span>
           <span class="ja">ステップ01</span>
@@ -1602,7 +1896,7 @@ body.lang-ja .hero-letter {
           <span class="ja">訓練を受けたインタビュアーは、相互のつながりを通じて紹介されます。初回はお茶と会話のみ。録音も、プレッシャーもありません。</span>
         </p>
       </div>
-      <div class="session-step step-done reveal reveal-delay-2">
+      <div class="session-step step-done reveal reveal-delay-2" role="listitem">
         <div class="session-step-number">
           <span class="en">Step 02</span>
           <span class="ja">ステップ02</span>
@@ -1616,7 +1910,7 @@ body.lang-ja .hero-letter {
           <span class="ja">書面による同意を得て記録します。音声のみ。語り手が何を共有し、何を非公開にするかを決めます。</span>
         </p>
       </div>
-      <div class="session-step step-done reveal reveal-delay-3">
+      <div class="session-step step-done reveal reveal-delay-3" role="listitem">
         <div class="session-step-number">
           <span class="en">Step 03</span>
           <span class="ja">ステップ03</span>
@@ -1634,11 +1928,13 @@ body.lang-ja .hero-letter {
   </div>
 </section>
 
-<section class="voices" id="about">
+<hr class="section-divider" aria-hidden="true">
+
+<section class="voices" id="about" aria-labelledby="voices-heading">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-head-border"></div>
-      <h2>
+      <h2 id="voices-heading">
         <span class="en">Rooted in method</span>
         <span class="ja">方法論に基づいて</span>
       </h2>
@@ -1659,7 +1955,7 @@ body.lang-ja .hero-letter {
         </p>
       </div>
       <div class="voices-endorsement reveal reveal-delay-2">
-        <div class="quote-mark">&ldquo;</div>
+        <div class="quote-mark" aria-hidden="true">&ldquo;</div>
         <p class="quote-text">
           <span class="en">I showed up. I kept showing up. I learned the language well enough to understand what they were not saying.</span>
           <span class="ja">私は通い続けました。彼らが言わないことを理解できるほど、言語を学びました。</span>
@@ -1676,15 +1972,15 @@ body.lang-ja .hero-letter {
   </div>
 </section>
 
-<section class="cta-section" id="contact">
+<section class="cta-section" id="contact" aria-labelledby="cta-heading">
   <div class="container-narrow">
     <div class="cta-envelope reveal">
-      <div class="cta-flap-corner tl"></div>
-      <div class="cta-flap-corner tr"></div>
-      <div class="cta-flap-corner bl"></div>
-      <div class="cta-flap-corner br"></div>
+      <div class="cta-flap-corner tl" aria-hidden="true"></div>
+      <div class="cta-flap-corner tr" aria-hidden="true"></div>
+      <div class="cta-flap-corner bl" aria-hidden="true"></div>
+      <div class="cta-flap-corner br" aria-hidden="true"></div>
       <div class="section-head-border"></div>
-      <h2>
+      <h2 id="cta-heading">
         <span class="en">Want to be part of this?</span>
         <span class="ja">あなたも参加しませんか？</span>
       </h2>
@@ -1699,14 +1995,16 @@ body.lang-ja .hero-letter {
   </div>
 </section>
 
-<footer>
+</main>
+
+<footer role="contentinfo">
   <div class="container">
-    <a href="#" class="logo">
-      <img src="https://i.imgur.com/vx7Apkh.png" alt="MyTegami" class="logo-img">
+    <a href="#" class="logo" aria-label="Tegami home">
+      <img src="https://i.imgur.com/vx7Apkh.png" alt="MyTegami" class="logo-img" width="56" height="56">
     </a>
-    <a href="https://mytegami.win" class="footer-brand" target="_blank">A MyTegami project</a>
+    <a href="https://mytegami.win" class="footer-brand" target="_blank" rel="noopener noreferrer">A MyTegami project</a>
     <div class="links">
-      <a href="https://linkedin.com/company/mytegami" target="_blank">LinkedIn</a>
+      <a href="https://linkedin.com/company/mytegami" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="mailto:hello@mytegami.win">Email</a>
     </div>
     <div class="copyright">
@@ -1717,57 +2015,113 @@ body.lang-ja .hero-letter {
 </footer>
 
 <script>
-let lang = 'en';
+(function() {
+  'use strict';
 
-function toggleLang() {
-  lang = lang === 'en' ? 'ja' : 'en';
-  document.body.classList.toggle('lang-ja', lang === 'ja');
-  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'JP' : 'EN';
-}
+  var lang = localStorage.getItem('tegami-lang') || 'en';
 
-function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.classList.toggle('dark');
-  localStorage.setItem('tegami-theme', isDark ? 'dark' : 'light');
-  document.querySelector('meta[name="theme-color"]').content = isDark ? '#2A1F18' : '#A05A3A';
-}
-
-const savedTheme = localStorage.getItem('tegami-theme');
-if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-  document.documentElement.classList.add('dark');
-  document.querySelector('meta[name="theme-color"]').content = '#2A1F18';
-}
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-  if (!localStorage.getItem('tegami-theme')) {
-    document.documentElement.classList.toggle('dark', e.matches);
-    document.querySelector('meta[name="theme-color"]').content = e.matches ? '#2A1F18' : '#A05A3A';
+  function applyLang() {
+    document.body.classList.toggle('lang-ja', lang === 'ja');
   }
-});
 
-window.addEventListener('scroll', function() {
-  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+  window.toggleLang = function() {
+    lang = lang === 'en' ? 'ja' : 'en';
+    localStorage.setItem('tegami-lang', lang);
+    applyLang();
+  };
 
-const observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
+  window.toggleTheme = function() {
+    var html = document.documentElement;
+    var isDark = html.classList.toggle('dark');
+    localStorage.setItem('tegami-theme', isDark ? 'dark' : 'light');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = isDark ? '#2A1F18' : '#A05A3A';
+  };
+
+  var savedTheme = localStorage.getItem('tegami-theme');
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+    var themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) themeMeta.content = '#2A1F18';
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem('tegami-theme')) {
+      document.documentElement.classList.toggle('dark', e.matches);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = e.matches ? '#2A1F18' : '#A05A3A';
     }
   });
-}, { threshold: 0.1 });
 
-document.querySelectorAll('.reveal').forEach(function(el) {
-  observer.observe(el);
-});
+  applyLang();
 
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelector('html').style.scrollBehavior = 'auto';
-  document.querySelectorAll('.reveal').forEach(function(el) {
-    el.classList.add('visible');
+  /* Scroll nav */
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* Mobile menu */
+  var mobileMenu = document.getElementById('mobileMenu');
+  var hamburger = document.querySelector('.hamburger');
+
+  window.toggleMobileMenu = function() {
+    var isOpen = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  };
+
+  window.closeMobileMenu = function() {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+  };
+
+  /* Close mobile menu on Escape */
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      closeMobileMenu();
+      hamburger.focus();
+    }
   });
-}
+
+  /* Scroll reveal */
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  /* Reduced motion */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      el.classList.add('visible');
+    });
+  }
+
+  /* Smooth scroll for anchor links (close mobile menu first) */
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        closeMobileMenu();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', this.getAttribute('href'));
+      }
+    });
+  });
+})();
 </script>
 
 </body>

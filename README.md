@@ -1,49 +1,66 @@
-
 # Tegami — Tell Me Your Story
 
-Short description
+A bilingual (English/Japanese) oral-history landing page for the **Tegami Oral History Project** — preserving the voices of the pre-Facebook generation.
 
-Tegami is a bilingual (English/Japanese) oral-history landing page and micro-site for the "Tell Me Your Story" project. This repo contains a single-file static landing page (index.html) designed to be deployed to Vercel or any static host.
+**Live:** [tegami-oral-history.vercel.app](https://tegami-oral-history.vercel.app)
 
-Live
+---
 
-- https://tegami-oral-history.vercel.app
+## What's here
 
-What’s here
+| File | Purpose |
+|------|---------|
+| `index.html` | Full landing page (inline CSS + JS). Responsive, accessible, dark mode, EN/JA toggle. |
+| `vercel.json` | Vercel deployment config with security headers and caching. |
+| `README.md` | This file. |
 
-- index.html — the full landing page (inline CSS + JS). Mobile-first, accessible-ish, light animations, dark mode, EN/JA copy.
-- vercel.json — Vercel configuration used on deployment.
-- README.md — this file.
+## Features
 
-Quick start
+- **Bilingual** — English ↔ Japanese toggle, persisted in `localStorage`
+- **Dark mode** — System preference detection + manual toggle, persisted in `localStorage`
+- **Responsive** — Mobile-first with hamburger navigation at ≤768px
+- **Accessible** — Skip-to-content link, ARIA landmarks, keyboard navigation (Escape to close menu), `prefers-reduced-motion` support
+- **SEO-ready** — Open Graph, Twitter Card, JSON-LD structured data, canonical URL
+- **Performance** — `preconnect` hints, `font-display: swap`, minimal JS (~80 lines), no dependencies
+- **Decorative** — Paper noise texture, animated swoosh lines, waveform visualization, scroll-reveal animations
 
-1. Clone the repository and open index.html directly for a fast preview.
-2. For a local server (recommended):
+## Quick start
 
-   python3 -m http.server 8080
+```bash
+# Clone and open directly
+open index.html
 
-   Then visit http://localhost:8080
+# Or use a local server (recommended)
+python3 -m http.server 8080
+# → http://localhost:8080
+```
 
-Deployment
+## Deployment
 
-- The project is ready for static deployment. Pushing to the main branch will trigger Vercel if the project is linked.
-- If you use Vercel CLI: `vercel --prod` (requires VERCEL_TOKEN / account access).
+Pushing to `main` triggers Vercel if the project is linked. Manual deploy:
 
-Editing notes
+```bash
+vercel --prod
+```
 
-- All markup, styles, and scripts are in index.html for simplicity. For maintainability, consider extracting CSS and JS into separate files and updating vercel.json if needed.
-- Language toggle uses body.lang-ja; the default language is English.
-- Theme preference is stored in localStorage under `tegami-theme`.
+## Architecture
 
-Contributing
+Single-file static site — all markup, styles, and scripts live in `index.html` for simplicity. Key systems:
 
-- For content fixes (copy, translations, links): edit index.html and submit a PR to main.
-- For larger refactors (componentize CSS/JS, add forms, analytics), open an issue describing the scope before starting.
+- **Theme**: CSS custom properties (`oklch` color space) with `html.dark` class swap
+- **Language**: `.en` / `.ja` span pairs toggled via `body.lang-ja` class
+- **Animations**: IntersectionObserver for scroll-reveal, CSS keyframes for decorative elements
+- **Mobile menu**: Full-screen overlay with staggered entry animations, `aria-expanded` state management
 
-Contact
+## Contributing
 
-- Project contact: hello@mytegami.win
+- **Content fixes** (copy, translations, links): edit `index.html`, submit a PR to `main`.
+- **Larger refactors**: open an issue first to discuss scope.
 
-License
+## Contact
 
-- Add a LICENSE file to this repo to indicate the intended license. If you want, I can add an MIT or CC-BY license.
+hello@mytegami.win · [LinkedIn](https://linkedin.com/company/mytegami) · [mytegami.win](https://mytegami.win)
+
+## License
+
+Add a `LICENSE` file to indicate the intended license.
