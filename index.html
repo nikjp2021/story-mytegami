@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tegami: Tell Me Your Story</title>
+<meta name="description" content="A bilingual oral history archive preserving the voices of the pre-Facebook generation. Wisdom shares, life stories, and a permanent digital archive.">
+<meta property="og:title" content="Tegami: Tell Me Your Story">
+<meta property="og:description" content="A bilingual oral history archive for the pre-Facebook generation.">
+<meta property="og:image" content="https://i.imgur.com/i9hVRuW.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#A05A3A">
+<link rel="icon" type="image/png" href="https://i.imgur.com/i9hVRuW.png">
+<link rel="apple-touch-icon" href="https://i.imgur.com/vx7Apkh.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@300;400;500;600&family=Zen+Old+Mincho:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --paper: oklch(0.99 0.004 75);
+  --warm-surface: oklch(0.95 0.012 70);
+  --cream: oklch(0.91 0.015 65);
+  --espresso: oklch(0.2 0.012 40);
+  --espresso-faded: oklch(0.38 0.01 40);
+  --terracotta: oklch(0.55 0.14 30);
+  --terracotta-light: oklch(0.68 0.1 30);
+  --terracotta-deep: oklch(0.42 0.12 30);
+  --terracotta-faded: oklch(0.85 0.05 30);
+  --terracotta-bg: oklch(0.52 0.12 28);
+  --honey: oklch(0.78 0.09 75);
+  --honey-deep: oklch(0.65 0.09 75);
+  --sage: oklch(0.7 0.04 140);
+  --sage-faded: oklch(0.9 0.015 140);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.04), 0 1px 1px oklch(0 0 0 / 0.02);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.06), 0 2px 4px oklch(0 0 0 / 0.03);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.08), 0 4px 8px oklch(0 0 0 / 0.04);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 800ms;
+
+  --nav-scrolled-bg: oklch(0.99 0.004 75 / 0.92);
+  --lang-toggle-border: oklch(0.91 0.015 65 / 0.6);
+  --track-section-title: oklch(0.85 0.03 30);
+  --track-glow-1: oklch(0.8 0.05 30 / 0.08);
+  --track-glow-2: oklch(0.3 0.02 40 / 0.1);
+  --card-wisdom-bg: oklch(0.95 0.02 30 / 0.15);
+  --card-wisdom-border: oklch(0.9 0.02 30 / 0.15);
+  --card-stories-bg: oklch(0.98 0.015 75 / 0.12);
+  --card-stories-border: oklch(0.9 0.02 30 / 0.1);
+  --card-wisdom-shadow: 0 8px 24px oklch(0 0 0 / 0.12);
+  --card-stories-shadow: 0 8px 24px oklch(0 0 0 / 0.08);
+  --card-track-text: oklch(0.82 0.03 30);
+  --card-track-subtitle: oklch(0.8 0.04 30);
+  --tag-honey-bg: oklch(0.78 0.09 75 / 0.15);
+  --tag-terracotta-bg: oklch(0.55 0.14 30 / 0.2);
+  --copyright-text: oklch(0.55 0.025 40);
+  --author-title: oklch(0.55 0.025 40);
+  --hero-glow: oklch(0.55 0.14 30 / 0.07);
+  --hero-watermark: oklch(0.55 0.14 30 / 0.04);
+  --swoosh-1: oklch(0.55 0.14 30 / 0.25);
+  --swoosh-2: oklch(0.55 0.14 30 / 0.15);
+  --swoosh-3: oklch(0.78 0.09 75 / 0.12);
+  --noise-blend: multiply;
+  --brand-teal: oklch(0.35 0.045 190);
+  --theme-transition: color-scheme 0.3s ease;
+}
+
+html.dark {
+  --paper: oklch(0.13 0.006 40);
+  --warm-surface: oklch(0.17 0.008 40);
+  --cream: oklch(0.21 0.01 40);
+  --espresso: oklch(0.86 0.008 70);
+  --espresso-faded: oklch(0.62 0.006 70);
+  --terracotta: oklch(0.6 0.14 28);
+  --terracotta-light: oklch(0.7 0.11 28);
+  --terracotta-deep: oklch(0.48 0.12 28);
+  --terracotta-faded: oklch(0.28 0.06 28);
+  --terracotta-bg: oklch(0.32 0.09 28);
+  --honey: oklch(0.68 0.08 75);
+  --honey-deep: oklch(0.55 0.08 75);
+  --sage: oklch(0.5 0.03 140);
+  --sage-faded: oklch(0.25 0.015 140);
+  --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.3), 0 1px 1px oklch(0 0 0 / 0.15);
+  --shadow-md: 0 4px 12px oklch(0 0 0 / 0.35), 0 2px 4px oklch(0 0 0 / 0.2);
+  --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.4), 0 4px 8px oklch(0 0 0 / 0.25);
+  --nav-scrolled-bg: oklch(0.13 0.006 40 / 0.92);
+  --lang-toggle-border: oklch(0.21 0.01 40 / 0.6);
+  --track-section-title: oklch(0.72 0.02 30);
+  --track-glow-1: oklch(0.6 0.05 30 / 0.08);
+  --track-glow-2: oklch(0.4 0.02 40 / 0.08);
+  --card-wisdom-bg: oklch(0.25 0.02 30 / 0.25);
+  --card-wisdom-border: oklch(0.3 0.02 30 / 0.2);
+  --card-stories-bg: oklch(0.18 0.01 40 / 0.2);
+  --card-stories-border: oklch(0.25 0.015 30 / 0.15);
+  --card-wisdom-shadow: 0 8px 24px oklch(0 0 0 / 0.35);
+  --card-stories-shadow: 0 8px 24px oklch(0 0 0 / 0.3);
+  --card-track-text: oklch(0.72 0.02 30);
+  --card-track-subtitle: oklch(0.65 0.03 30);
+  --tag-honey-bg: oklch(0.68 0.08 75 / 0.2);
+  --tag-terracotta-bg: oklch(0.6 0.14 28 / 0.2);
+  --copyright-text: oklch(0.5 0.02 40);
+  --author-title: oklch(0.5 0.02 40);
+  --hero-glow: oklch(0.6 0.14 28 / 0.1);
+  --hero-watermark: oklch(0.6 0.14 28 / 0.06);
+  --swoosh-1: oklch(0.6 0.14 28 / 0.3);
+  --swoosh-2: oklch(0.6 0.14 28 / 0.2);
+  --swoosh-3: oklch(0.68 0.08 75 / 0.15);
+  --noise-blend: screen;
+  --brand-teal: oklch(0.55 0.045 190);
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Figtree', 'Noto Sans JP', -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--espresso);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+::selection {
+  background: var(--terracotta-faded);
+  color: var(--espresso);
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.container-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.container-wide {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Paper noise */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+  mix-blend-mode: var(--noise-blend);
+}
+
+.noise-overlay svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background var(--dur-base) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+nav.scrolled {
+  background: var(--nav-scrolled-bg);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-sm);
+}
+
+nav:not(.scrolled) {
+  background: transparent;
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
+}
+
+.logo {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 1.25rem;
+  color: var(--espresso);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--espresso);
+  position: relative;
+  z-index: 2;
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.logo-img {
+  height: 56px;
+  width: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--espresso-faded);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--dur-fast) var(--ease-out);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--terracotta);
+  transition: width var(--dur-base) var(--ease-out);
+}
+
+.nav-links a:hover {
+  color: var(--espresso);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.lang-toggle {
+  background: transparent;
+  border: 1px solid var(--lang-toggle-border);
+  color: var(--espresso-faded);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  font-family: 'Figtree', 'Noto Sans JP', sans-serif;
+}
+
+.lang-toggle:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  background: var(--terracotta-faded);
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--lang-toggle-border);
+  color: var(--espresso-faded);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0;
+  position: relative;
+}
+
+.theme-toggle:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  background: var(--terracotta-faded);
+}
+
+.theme-toggle svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-toggle .sun-icon,
+.theme-toggle .moon-icon {
+  position: absolute;
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.theme-toggle .sun-icon {
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+
+.theme-toggle .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+html.dark .theme-toggle .sun-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+html.dark .theme-toggle .moon-icon {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 80px;
+}
+
+.hero-glow {
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  translate: -50% 0;
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, var(--hero-glow) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Decorative background letter "T" watermark */
+.hero-letter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: clamp(20rem, 40vw, 50rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--hero-watermark);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+}
+
+.hero-jp-letter {
+  font-family: 'Zen Old Mincho', serif;
+}
+
+/* Swoosh lines - more dramatic */
+.hero-swoosh {
+  position: absolute;
+  right: -2%;
+  bottom: 15%;
+  width: 500px;
+  height: 250px;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.hero-swoosh svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero-swoosh path:nth-child(1) {
+  stroke: var(--swoosh-1);
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawSwoosh 2.5s var(--ease-out) forwards;
+}
+
+.hero-swoosh path:nth-child(2) {
+  stroke: var(--swoosh-2);
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawSwoosh 3s var(--ease-out) 0.3s forwards;
+}
+
+.hero-swoosh path:nth-child(3) {
+  stroke: var(--swoosh-3);
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: drawSwoosh 3.5s var(--ease-out) 0.6s forwards;
+}
+
+@keyframes drawSwoosh {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Subtle audio waveform decoration */
+.hero-waveform {
+  position: absolute;
+  left: 5%;
+  bottom: 25%;
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  height: 60px;
+  pointer-events: none;
+  opacity: 0.08;
+}
+
+.hero-waveform span {
+  display: block;
+  width: 2px;
+  background: var(--terracotta);
+  border-radius: 1px;
+  animation: wavePulse 2s var(--ease-in-out) infinite;
+}
+
+.hero-waveform span:nth-child(1) { height: 20px; animation-delay: 0s; }
+.hero-waveform span:nth-child(2) { height: 48px; animation-delay: 0.1s; }
+.hero-waveform span:nth-child(3) { height: 48px; animation-delay: 0.2s; }
+.hero-waveform span:nth-child(4) { height: 55px; animation-delay: 0.15s; }
+.hero-waveform span:nth-child(5) { height: 42px; animation-delay: 0.3s; }
+.hero-waveform span:nth-child(6) { height: 50px; animation-delay: 0.05s; }
+.hero-waveform span:nth-child(7) { height: 28px; animation-delay: 0.25s; }
+.hero-waveform span:nth-child(8) { height: 15px; animation-delay: 0.35s; }
+.hero-waveform span:nth-child(9) { height: 38px; animation-delay: 0.1s; }
+.hero-waveform span:nth-child(10) { height: 22px; animation-delay: 0.2s; }
+.hero-waveform span:nth-child(11) { height: 44px; animation-delay: 0s; }
+.hero-waveform span:nth-child(12) { height: 30px; animation-delay: 0.15s; }
+
+@keyframes wavePulse {
+  0%, 100% { transform: scaleY(0.6); }
+  50% { transform: scaleY(1); }
+}
+
+.hero .container-narrow {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-headline {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--espresso);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--espresso-faded);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  max-width: 540px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--espresso-faded);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  animation: fadeScroll 3s var(--ease-out) 1s infinite;
+}
+
+@keyframes fadeScroll {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 0.2; transform: translateY(4px); }
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 24px;
+  background: var(--espresso-faded);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--terracotta);
+  color: var(--paper);
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all var(--dur-fast) var(--ease-out);
+  border: none;
+  cursor: pointer;
+  font-family: 'Figtree', 'Noto Sans JP', sans-serif;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background: var(--terracotta-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--espresso);
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--cream);
+  transition: all var(--dur-fast) var(--ease-out);
+  font-family: 'Figtree', 'Noto Sans JP', sans-serif;
+}
+
+.btn-secondary:hover {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  background: var(--terracotta-faded);
+}
+
+/* Section base */
+section {
+  padding: 140px 0;
+  position: relative;
+}
+
+.section-head {
+  margin-bottom: 48px;
+}
+
+.section-head-border {
+  width: 48px;
+  height: 2px;
+  background: var(--terracotta);
+  margin-bottom: 20px;
+}
+
+.section-head h2 {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--espresso);
+  max-width: 600px;
+}
+
+.section-head p {
+  font-size: 1.05rem;
+  color: var(--espresso-faded);
+  margin-top: 16px;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* === INVITATION: two-column layout === */
+.invitation {
+  background: var(--warm-surface);
+  padding: 140px 0 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.invitation::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to bottom right, transparent 49.5%, var(--paper) 50%);
+}
+
+.invitation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.invitation-text p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--espresso);
+  margin-bottom: 20px;
+}
+
+.invitation-stat {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+}
+
+.invitation-stat-label {
+  font-size: 0.85rem;
+  color: var(--espresso-faded);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 24px;
+}
+
+.invitation-right {
+  position: relative;
+}
+
+.invitation-quote {
+  padding: 40px 48px;
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.invitation-quote::before {
+   content: '\201C';
+   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+   font-size: 5rem;
+   line-height: 1;
+   color: var(--terracotta-faded);
+   position: absolute;
+   top: 12px;
+   left: 20px;
+   pointer-events: none;
+ }
+.invitation-quote::after {
+   content: '\201D';
+   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+   font-size: 5rem;
+   line-height: 1;
+   color: var(--terracotta-faded);
+   position: absolute;
+   bottom: 12px;
+   right: 20px;
+   pointer-events: none;
+ }
+
+.invitation-quote p {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--espresso);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.invitation-quote .attribution {
+  font-family: 'Figtree', 'Noto Sans JP', sans-serif;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: var(--espresso-faded);
+  position: relative;
+  z-index: 1;
+}
+
+/* === TRACKS: asymmetric, overlapping === */
+.tracks {
+  background: var(--terracotta-bg);
+  padding: 160px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.tracks::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--track-glow-1) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.tracks::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--track-glow-2) 0%, transparent 60%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.tracks .section-head-border {
+  background: var(--honey);
+}
+
+.tracks .section-head h2 {
+  color: var(--paper);
+}
+
+.tracks .section-head p {
+  color: var(--track-section-title);
+}
+
+.tracks-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.track-card {
+  border-radius: var(--radius-lg);
+  padding: 56px 48px;
+  transition: all var(--dur-base) var(--ease-out);
+  position: relative;
+}
+
+.track-card.wisdom {
+  background: var(--card-wisdom-bg);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--card-wisdom-border);
+}
+
+.track-card.stories {
+  background: var(--card-stories-bg);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--card-stories-border);
+  margin-top: 60px;
+}
+
+.track-card:hover {
+  transform: translateY(-4px);
+}
+
+.track-card.wisdom:hover {
+  box-shadow: var(--card-wisdom-shadow);
+}
+
+.track-card.stories:hover {
+  box-shadow: var(--card-stories-shadow);
+}
+
+.track-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.track-card.wisdom .track-label { color: var(--honey); }
+.track-card.stories .track-label { color: var(--terracotta-light); }
+
+.track-card h3 {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.track-card.wisdom h3 { color: var(--paper); }
+.track-card.stories h3 { color: var(--paper); }
+
+.track-card .track-subtitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.track-card.wisdom .track-subtitle { color: var(--card-track-subtitle); }
+.track-card.stories .track-subtitle { color: var(--card-track-subtitle); }
+
+.track-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.track-card.wisdom p { color: var(--card-track-text); }
+.track-card.stories p { color: var(--card-track-text); }
+
+.track-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.track-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.track-tag.honey {
+  background: var(--tag-honey-bg);
+  color: var(--honey);
+}
+
+.track-tag.terracotta {
+  background: var(--tag-terracotta-bg);
+  color: var(--terracotta-light);
+}
+
+/* === Session flow === */
+.session-narrative {
+  background: var(--paper);
+  padding: 140px 0 120px;
+}
+
+.session-narrative .section-head h2 {
+  max-width: 480px;
+}
+
+.session-flow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+}
+
+.session-flow::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(16.67% + 20px);
+  right: calc(16.67% + 20px);
+  height: 1.5px;
+  background: var(--sage-faded);
+}
+
+.session-step {
+  position: relative;
+  padding-top: 60px;
+}
+
+.session-step::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--terracotta);
+  z-index: 1;
+}
+
+.session-step.step-done::before {
+  background: var(--terracotta);
+}
+
+.session-step-number {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 0.8rem;
+  color: var(--terracotta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.session-step h3 {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 12px;
+  line-height: 1.35;
+}
+
+.session-step p {
+  color: var(--espresso-faded);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* === About === */
+.voices {
+  background: var(--warm-surface);
+  padding: 140px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.voices::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(to top left, transparent 49.5%, var(--warm-surface) 50%);
+}
+
+.voices-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.voices-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--espresso);
+  margin-bottom: 16px;
+}
+
+.voices-endorsement {
+  background: var(--paper);
+  border-radius: var(--radius-md);
+  padding: 48px;
+  border: 1px solid var(--cream);
+  position: relative;
+  margin-top: -80px;
+}
+
+.voices-endorsement .quote-mark {
+   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+   font-size: 4rem;
+   line-height: 0.8;
+   color: var(--terracotta-faded);
+   margin-bottom: 12px;
+   position: relative;
+ }
+.voices-endorsement .quote-mark::after {
+   content: '\201D';
+   font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+   font-size: 4rem;
+   line-height: 0.8;
+   color: var(--terracotta-faded);
+   position: absolute;
+   bottom: 0;
+   right: -0.5em;
+   pointer-events: none;
+ }
+
+.voices-endorsement .quote-text {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--espresso);
+  margin-bottom: 24px;
+}
+
+.voices-endorsement .author {
+  font-size: 0.9rem;
+  color: var(--espresso-faded);
+}
+
+.voices-endorsement .author strong {
+  color: var(--espresso);
+  font-weight: 600;
+}
+
+.voices-endorsement .author .title {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--author-title);
+  margin-top: 4px;
+}
+
+/* === CTA with envelope motif === */
+.cta-section {
+  background: var(--paper);
+  text-align: center;
+  padding: 140px 0;
+  position: relative;
+}
+
+.cta-envelope {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 64px 48px;
+  background: var(--warm-surface);
+  border-radius: var(--radius-md);
+}
+
+.cta-envelope::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  translate: -50% 0;
+  width: 60px;
+  height: 30px;
+  background: var(--brand-teal);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  opacity: 0.15;
+}
+
+.cta-envelope .section-head-border {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-envelope h2 {
+  font-family: 'DM Serif Display', 'Zen Old Mincho', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  color: var(--espresso);
+  margin-bottom: 16px;
+}
+
+.cta-envelope p {
+  color: var(--espresso-faded);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-envelope .btn-primary {
+  font-size: 1rem;
+  padding: 16px 40px;
+}
+
+/* Decorative envelope flap corners */
+.cta-flap-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--cream);
+  border-style: solid;
+  opacity: 0.4;
+}
+
+.cta-flap-corner.tl {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+  border-radius: var(--radius-sm) 0 0 0;
+}
+
+.cta-flap-corner.tr {
+  top: -1px;
+  right: -1px;
+  border-width: 2px 2px 0 0;
+  border-radius: 0 var(--radius-sm) 0 0;
+}
+
+.cta-flap-corner.bl {
+  bottom: -1px;
+  left: -1px;
+  border-width: 0 0 2px 2px;
+  border-radius: 0 0 0 var(--radius-sm);
+}
+
+.cta-flap-corner.br {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+
+/* Footer */
+footer {
+  padding: 56px 0;
+  background: var(--paper);
+  border-top: 1px solid var(--sage-faded);
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+footer .logo {
+  font-size: 1.1rem;
+}
+
+footer .links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+footer .links a {
+  color: var(--espresso-faded);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+footer .links a:hover {
+
+.footer-brand {
+  font-size: 0.8rem;
+  color: var(--brand-teal);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.footer-brand:hover {
+  opacity: 1;
+}
+  color: var(--terracotta);
+}
+
+footer .copyright {
+  color: var(--copyright-text);
+  font-size: 0.8rem;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+
+/* Japanese language support */
+.ja { display: none; }
+body.lang-ja .en { display: none; }
+body.lang-ja .ja { display: inline; }
+
+body.lang-ja {
+  --heading-font: 'Zen Old Mincho', 'DM Serif Display', serif;
+  --body-font: 'Noto Sans JP', 'Figtree', sans-serif;
+}
+
+body.lang-ja .hero-letter {
+  font-family: 'Zen Old Mincho', serif;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .invitation-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .tracks-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .track-card.stories {
+    margin-top: 0;
+  }
+
+  .session-flow {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .session-flow::before {
+    display: none;
+  }
+
+  .session-step {
+    padding-top: 0;
+    padding-left: 40px;
+  }
+
+  .session-step::before {
+    top: 4px;
+    left: 8px;
+  }
+
+  .voices-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .voices-endorsement {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .container, .container-narrow, .container-wide {
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 100px 0;
+  }
+
+  .invitation {
+    padding: 100px 0 140px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 100px 0 60px;
+  }
+
+  .hero-swoosh {
+    display: none;
+  }
+
+  .hero-waveform {
+    display: none;
+  }
+
+  .hero-letter {
+    font-size: clamp(14rem, 30vw, 20rem);
+  }
+
+  .nav-links a {
+    display: none;
+  }
+
+  .nav-links .lang-toggle {
+    display: block;
+  }
+
+  .nav-links .theme-toggle {
+    display: flex;
+  }
+
+  .track-card {
+    padding: 40px 32px;
+  }
+
+  .invitation-quote {
+    padding: 32px 24px;
+  }
+
+  .invitation-quote::before {
+    font-size: 3.5rem;
+    top: 8px;
+    left: 12px;
+  }
+
+  .cta-envelope {
+    padding: 48px 32px;
+  }
+
+  .tracks {
+    padding: 120px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+
+  .track-card {
+    padding: 32px 24px;
+  }
+
+  .section-head h2 {
+    font-size: 1.6rem;
+  }
+
+  .invitation-stat {
+    font-size: 2.2rem;
+  }
+
+  .cta-envelope {
+    padding: 40px 24px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .hero-swoosh path { animation: none; stroke-dashoffset: 0; }
+  .hero-waveform span { animation: none; }
+  .hero-scroll { animation: none; }
+}
+
+/* Print */
+@media print {
+  .noise-overlay { display: none; }
+  .hero { min-height: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="noise-overlay" aria-hidden="true">
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <filter id="paperNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+    </filter>
+    <rect width="100" height="100" filter="url(#paperNoise)" opacity="1"/>
+  </svg>
+</div>
+
+<nav id="nav">
+  <div class="container">
+    <a href="#" class="logo">
+      <img src="https://i.imgur.com/i9hVRuW.png" alt="" class="logo-mark">
+      <span class="logo-text">
+        <span class="en">Tegami</span>
+        <span class="ja">手紙</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#invitation">
+        <span class="en">Stories</span>
+        <span class="ja">物語</span>
+      </a>
+      <a href="#about">
+        <span class="en">About</span>
+        <span class="ja">この活動</span>
+      </a>
+      <a href="#contact">
+        <span class="en">Contact</span>
+        <span class="ja">お問い合わせ</span>
+      </a>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="lang-toggle" onclick="toggleLang()">JP</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-letter" aria-hidden="true">
+    <span class="en">T</span>
+    <span class="ja">手</span>
+  </div>
+  <div class="hero-swoosh" aria-hidden="true">
+    <svg viewBox="0 0 500 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 220 C 100 60, 200 20, 320 40 C 400 52, 450 80, 500 140" stroke-width="3" fill="none"/>
+      <path d="M0 235 C 120 100, 220 50, 350 70 C 420 82, 470 110, 500 170" stroke-width="2" fill="none"/>
+      <path d="M40 240 C 140 140, 240 90, 360 100 C 420 106, 460 130, 490 180" stroke-width="1.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="hero-waveform" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container-narrow">
+    <h1 class="hero-headline reveal visible">
+      <span class="en">Every story<br>deserves to <em>live</em>.</span>
+      <span class="ja">すべての物語は<br><em>生きつづける</em>。</span>
+    </h1>
+    <p class="hero-sub reveal visible reveal-delay-1">
+      <span class="en">A bilingual oral history archive for the generation that grew up without the internet. Their voices matter. We're here to capture them.</span>
+      <span class="ja">インターネットのない時代を生きた世代のための、二言語オーラルヒストリーアーカイブ。その声を、未来へ届けるために。</span>
+    </p>
+    <div class="hero-actions reveal visible reveal-delay-2">
+      <a href="#invitation" class="btn-primary">
+        <span class="en">Explore the Archive</span>
+        <span class="ja">アーカイブを見る</span>
+      </a>
+      <a href="#contact" class="btn-secondary">
+        <span class="en">Get Involved</span>
+        <span class="ja">参加する</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span class="en">Scroll</span>
+    <span class="ja">スクロール</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<section class="invitation" id="invitation">
+  <div class="container-wide">
+    <div class="invitation-grid">
+      <div class="invitation-left">
+        <div class="section-head reveal">
+          <div class="section-head-border"></div>
+          <h2>
+            <span class="en">The stories we haven't asked for</span>
+            <span class="ja">まだ聞かれていない物語</span>
+          </h2>
+        </div>
+        <div class="invitation-text reveal reveal-delay-1">
+          <p>
+<span class="en">Tegami pairs trained interviewers with elders from the pre-Facebook generation. Over tea, at a kitchen table, in whatever space feels safe. We listen. We record. We preserve.</span>
+          <span class="ja">Tegamiは、訓練を受けたインタビュアーと、プレ・フェイスブック世代の高齢者をペアリングします。お茶を飲みながら、キッチンテーブルで、安心できる場所ならどこでも。耳を傾け、記録し、保存します。</span>
+          </p>
+          <p>
+            <span class="en">Every day, 10,000 people turn 80. Two decades is all we have to capture a generation's worth of lived experience. This is not a project with unlimited time.</span>
+            <span class="ja">毎日1万人が80歳を迎えます。一世代分の生きた経験を記録するために残された時間は、あと20年。これは、無限の時間があるプロジェクトではありません。</span>
+          </p>
+        </div>
+      </div>
+      <div class="invitation-right">
+        <div class="invitation-stat reveal reveal-delay-1">
+          <span class="en">2.5B</span>
+          <span class="ja">25億</span>
+        </div>
+        <div class="invitation-stat-label">
+          <span class="en">People born before the internet</span>
+          <span class="ja">インターネット以前に生まれた人々</span>
+        </div>
+        <div class="invitation-quote reveal reveal-delay-2">
+          <p>
+<span class="en">"I asked my grandmother to tell me her story. She didn't know where to start. Not because she had forgotten, but because no one had ever asked."</span>
+          <span class="ja">「祖母に人生の話を聞かせてと頼んだ時、彼女はどこから始めればいいのかわかりませんでした。忘れたからではなく、誰も尋ねたことがなかったからです。」</span>
+          </p>
+          <div class="attribution">
+            <span class="en">Founder, Tegami Oral History Project</span>
+            <span class="ja">Tegami オーラルヒストリープロジェクト 創設者</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tracks">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-border"></div>
+      <h2>
+        <span class="en">Two kinds of stories</span>
+        <span class="ja">二つの種類の物語</span>
+      </h2>
+      <p>
+        <span class="en">A life is made of both the light and the deep. We capture both.</span>
+        <span class="ja">人生は、軽やかなものと深いものの両方でできています。その両方を記録します。</span>
+      </p>
+    </div>
+    <div class="tracks-grid">
+      <div class="track-card wisdom reveal reveal-delay-1">
+        <div class="track-label">
+          <span class="en">Wisdom Shares</span>
+          <span class="ja">知恵の共有</span>
+        </div>
+        <h3>
+          <span class="en">A grandmother's recipe. A fisherman's knot. A song only one person left in the world still knows.</span>
+          <span class="ja">祖母のレシピ。漁師の結び方。世界でたった一人だけが歌える歌。</span>
+        </h3>
+        <div class="track-subtitle">
+          <span class="en">Recipes · Crafts · Skills · Knowledge</span>
+          <span class="ja">レシピ · 工芸 · 技術 · 知識</span>
+        </div>
+        <p>
+          <span class="en">Light, shareable sessions that preserve cultural knowledge. One session is all it takes.</span>
+          <span class="ja">文化的知識を保存する、軽やかで共有しやすいセッション。1回で完結します。</span>
+        </p>
+        <div class="track-tags">
+          <span class="track-tag honey">
+            <span class="en">30-60 min</span>
+            <span class="ja">30-60分</span>
+          </span>
+          <span class="track-tag honey">
+            <span class="en">One session</span>
+            <span class="ja">1回のみ</span>
+          </span>
+          <span class="track-tag honey">
+            <span class="en">Shareable</span>
+            <span class="ja">共有可能</span>
+          </span>
+        </div>
+      </div>
+      <div class="track-card stories reveal reveal-delay-2">
+        <div class="track-label">
+          <span class="en">Life Stories</span>
+          <span class="ja">ライフストーリー</span>
+        </div>
+        <h3>
+          <span class="en">Childhood, migration, love, loss, survival, change. A life in full.</span>
+          <span class="ja">子供時代、移住、愛、喪失、生存、変化。人生のすべて。</span>
+        </h3>
+        <div class="track-subtitle">
+          <span class="en">Full Oral History · Multi-session</span>
+          <span class="ja">完全なオーラルヒストリー · 複数回</span>
+        </div>
+        <p>
+          <span class="en">In-depth, narrative-driven interviews that build over multiple sessions. Permanent records for the archive.</span>
+          <span class="ja">複数回のセッションを重ねる、深く物語に焦点を当てたインタビュー。アーカイブに永久保存されます。</span>
+        </p>
+        <div class="track-tags">
+          <span class="track-tag terracotta">
+            <span class="en">2-3 sessions</span>
+            <span class="ja">2-3回</span>
+          </span>
+          <span class="track-tag terracotta">
+            <span class="en">60-90 min each</span>
+            <span class="ja">各60-90分</span>
+          </span>
+          <span class="track-tag terracotta">
+            <span class="en">Archival quality</span>
+            <span class="ja">アーカイブ品質</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="session-narrative">
+  <div class="container-narrow">
+    <div class="section-head reveal">
+      <div class="section-head-border"></div>
+      <h2>
+        <span class="en">What a session looks like</span>
+        <span class="ja">セッションの流れ</span>
+      </h2>
+      <p>
+        <span class="en">Simple, warm, and entirely on the narrator's terms.</span>
+        <span class="ja">シンプルに、温かく、すべては語り手のペースで。</span>
+      </p>
+    </div>
+    <div class="session-flow">
+      <div class="session-step step-done reveal reveal-delay-1">
+        <div class="session-step-number">
+          <span class="en">Step 01</span>
+          <span class="ja">ステップ01</span>
+        </div>
+        <h3>
+          <span class="en">Getting to know each other</span>
+          <span class="ja">お互いを知る</span>
+        </h3>
+        <p>
+          <span class="en">A trained interviewer is introduced through a mutual connection. First meeting is just tea and conversation. No recorder. No pressure.</span>
+          <span class="ja">訓練を受けたインタビュアーは、相互のつながりを通じて紹介されます。初回はお茶と会話のみ。録音も、プレッシャーもありません。</span>
+        </p>
+      </div>
+      <div class="session-step step-done reveal reveal-delay-2">
+        <div class="session-step-number">
+          <span class="en">Step 02</span>
+          <span class="ja">ステップ02</span>
+        </div>
+        <h3>
+          <span class="en">Recording the story</span>
+          <span class="ja">物語を記録する</span>
+        </h3>
+        <p>
+          <span class="en">With written consent, we record. Audio-only, no cameras. The narrator controls what is shared and what stays private.</span>
+          <span class="ja">書面による同意を得て記録します。音声のみ。語り手が何を共有し、何を非公開にするかを決めます。</span>
+        </p>
+      </div>
+      <div class="session-step step-done reveal reveal-delay-3">
+        <div class="session-step-number">
+          <span class="en">Step 03</span>
+          <span class="ja">ステップ03</span>
+        </div>
+        <h3>
+          <span class="en">Preserving for the future</span>
+          <span class="ja">未来へつなぐ</span>
+        </h3>
+        <p>
+          <span class="en">Transcripts are translated, archived permanently. The narrator's family receives a copy. The story lives on.</span>
+          <span class="ja">文字起こしされ、翻訳され、永久保存されます。語り手の家族にもコピーが届けられます。</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="voices" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head-border"></div>
+      <h2>
+        <span class="en">Rooted in method</span>
+        <span class="ja">方法論に基づいて</span>
+      </h2>
+    </div>
+    <div class="voices-content">
+      <div class="voices-text reveal reveal-delay-1">
+        <p>
+          <span class="en">Tegami is guided by Professor M.G. Sheftall, an oral historian at Shizuoka University whose work documenting survivors of the atomic bombings has reached millions through Penguin Random House.</span>
+          <span class="ja">Tegamiは、静岡大学のオーラルヒストリアン、M.G.シェフタル教授の指導のもとで進められています。原爆生存者の証言記録は、Penguin Random Houseから出版され世界中で読まれています。</span>
+        </p>
+        <p>
+          <span class="en">His books, <em>Hiroshima: The Last Witnesses</em> (2024) and <em>Nagasaki: The Last Witnesses</em> (2025), provide the methodological foundation: patience, respect, and the understanding that some things are said in silence.</span>
+          <span class="ja">著書『Hiroshima: The Last Witnesses』(2024)、『Nagasaki: The Last Witnesses』(2025) は、方法論の基盤を提供しています。忍耐、敬意、そして沈黙の中でこそ語られることがあるという理解。</span>
+        </p>
+        <p>
+          <span class="en">The project is being developed as part of doctoral research in oral history methodology at Shizuoka University, Japan.</span>
+          <span class="ja">本プロジェクトは、静岡大学におけるオーラルヒストリー方法論の博士研究の一環として開発されています。</span>
+        </p>
+      </div>
+      <div class="voices-endorsement reveal reveal-delay-2">
+        <div class="quote-mark">&ldquo;</div>
+        <p class="quote-text">
+          <span class="en">I showed up. I kept showing up. I learned the language well enough to understand what they were not saying.</span>
+          <span class="ja">私は通い続けました。彼らが言わないことを理解できるほど、言語を学びました。</span>
+        </p>
+        <div class="author">
+          <strong>Professor M.G. Sheftall</strong>
+          <span class="title">
+            <span class="en">Shizuoka University · Oral Historian<br>Author, <em>Hiroshima: The Last Witnesses</em></span>
+            <span class="ja">静岡大学 · オーラルヒストリアン<br>著書『Hiroshima: The Last Witnesses』</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="contact">
+  <div class="container-narrow">
+    <div class="cta-envelope reveal">
+      <div class="cta-flap-corner tl"></div>
+      <div class="cta-flap-corner tr"></div>
+      <div class="cta-flap-corner bl"></div>
+      <div class="cta-flap-corner br"></div>
+      <div class="section-head-border"></div>
+      <h2>
+        <span class="en">Want to be part of this?</span>
+        <span class="ja">あなたも参加しませんか？</span>
+      </h2>
+      <p>
+        <span class="en">Share your story, volunteer as an interviewer, or support the archive. We'd love to hear from you.</span>
+        <span class="ja">あなたの物語を共有したい方、インタビュアーとして参加したい方、アーカイブを支援したい方。ぜひご連絡ください。</span>
+      </p>
+      <a href="mailto:hello@mytegami.win" class="btn-primary">
+        hello@mytegami.win
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <a href="#" class="logo">
+      <img src="https://i.imgur.com/vx7Apkh.png" alt="MyTegami" class="logo-img">
+    </a>
+    <a href="https://mytegami.win" class="footer-brand" target="_blank">A MyTegami project</a>
+    <div class="links">
+      <a href="https://linkedin.com/company/mytegami" target="_blank">LinkedIn</a>
+      <a href="mailto:hello@mytegami.win">Email</a>
+    </div>
+    <div class="copyright">
+      <span class="en">&copy; 2026 Tegami Oral History Project</span>
+      <span class="ja">&copy; 2026 Tegami オーラルヒストリープロジェクト</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+let lang = 'en';
+
+function toggleLang() {
+  lang = lang === 'en' ? 'ja' : 'en';
+  document.body.classList.toggle('lang-ja', lang === 'ja');
+  document.querySelector('.lang-toggle').textContent = lang === 'en' ? 'JP' : 'EN';
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.classList.toggle('dark');
+  localStorage.setItem('tegami-theme', isDark ? 'dark' : 'light');
+  document.querySelector('meta[name="theme-color"]').content = isDark ? '#2A1F18' : '#A05A3A';
+}
+
+const savedTheme = localStorage.getItem('tegami-theme');
+if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.classList.add('dark');
+  document.querySelector('meta[name="theme-color"]').content = '#2A1F18';
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+  if (!localStorage.getItem('tegami-theme')) {
+    document.documentElement.classList.toggle('dark', e.matches);
+    document.querySelector('meta[name="theme-color"]').content = e.matches ? '#2A1F18' : '#A05A3A';
+  }
+});
+
+window.addEventListener('scroll', function() {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(function(el) {
+  observer.observe(el);
+});
+
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelector('html').style.scrollBehavior = 'auto';
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}
+</script>
+
+</body>
+</html>
